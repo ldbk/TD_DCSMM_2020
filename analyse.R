@@ -32,7 +32,7 @@ plot(medianchl)
 title("Chl median 2010-2018")
 #comment définir une fonction ?
 fctquantile<-function(input,na.rm=TRUE){
-  resultats<-quantile(input,probs=0.5,na.rm=TRUE)
+  resultats<-quantile(input,probs=0.9,na.rm=TRUE)
   return(resultats)
 }
 #test de la fonction
@@ -46,6 +46,33 @@ library(rasterVis)
 levelplot(q50chl)
 levelplot(q50chl,margin=F,zscale=F,contour=T,par.settings= viridisTheme,main="Q50 2010-2018")
 levelplot(q50chl,margin=F,zscale=T,contour=T,par.settings= viridisTheme,main="Q50 2010-2018")
+
+#quantile à 90 % sur la série complète 2010-2018
+q90chl<-stackApply(chl,rep(1,3287),fctquantile)
+plot(q90chl,main="Q90 chl 2010-2018")
+#quantile à 90 % sur la série complète 2010-2016 ?
+q90chl<-stackApply(chl[[1:2557]],rep(1,2557),fctquantile)
+plot(q90chl,main="Q90 chl 2010-2016")
+#un truc en plus : quantile annuel ?
+idyear<-substr(names(chl),1,5)
+head(names(chl))
+head(idyear)
+q90chlyear<-stackApply(chl,idyear,fctquantile)
+levelplot(q90chlyear,main="Q90 chl 2010-2018")
+
+#série temporelle
+
+#serie temporelle
+chlts<-cellStats(chl,stat="mean",na.rm=T)
+head(chlts)
+#vecteur temporel
+temps<-strptime(gsub("X","",names(chlts)),"%Y.%m.%d")
+plot(temps,chlts,type="l")
+
+
+
+
+
 
 
 
