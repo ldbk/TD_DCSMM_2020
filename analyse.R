@@ -30,16 +30,22 @@ plot(c(1,2,3))
 medianchl<-stackApply(chl,rep(1,3287),median,na.rm=TRUE)
 plot(medianchl)
 title("Chl median 2010-2018")
-#comment définit une fonction ?
+#comment définir une fonction ?
 fctquantile<-function(input,na.rm=TRUE){
-    return(quantile(input,probs=0.5,na.rm=TRUE))
+  resultats<-quantile(input,probs=0.5,na.rm=TRUE)
+  return(resultats)
 }
-#test
-median(c(1,2,3))
-fctquantile(c(1,2,3))
-
-
-
+#test de la fonction
+#median(c(1,2,3))
+#fctquantile(c(1,2,3))
+#calcul le quantile à 50% (la médiane quoi) avec la fonction !
 q50chl<-stackApply(chl,rep(1,3287),fctquantile)
 plot(q50chl)
+#affichage joli
+library(rasterVis)
+levelplot(q50chl)
+levelplot(q50chl,margin=F,zscale=F,contour=T,par.settings= viridisTheme,main="Q50 2010-2018")
+levelplot(q50chl,margin=F,zscale=T,contour=T,par.settings= viridisTheme,main="Q50 2010-2018")
+
+
 
