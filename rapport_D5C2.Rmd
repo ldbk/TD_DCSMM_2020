@@ -11,16 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Contexte
 
-Blablabl
+Le descripteur D5 est...
+Dans ce rapport, il s'agit d'évaluer le critère C2 de ce descripteur correspondant à...
 
 ## Données
 
-Ici on lit les données, issues de <http://rmarkdown.rstudio.com>...
+Ici on lit les données, issues de <http://marine.copernicus.eu/>...
+Les concentrations en chlorophylle a sont établies à partir des données satellitales...
+Période d'étude, résolution des données etc
 
 ```{r data,echo=FALSE}
-library(raster)
+suppressPackageStartupMessages(library(raster))
 # spécifier env de travail
-getwd()
+# getwd()
 setwd("/home/moi/ifremer/cours_dcsmm")
 #lecture du fichier chlorophylle a
 chl<-stack("chl")
@@ -35,4 +38,7 @@ Résumé des analyses
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Carte du bon état écologique de D5C2
+
+Seuil, période d'étude, résolution des 
+
