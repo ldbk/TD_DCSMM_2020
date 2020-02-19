@@ -69,7 +69,14 @@ head(chlts)
 temps<-strptime(gsub("X","",names(chlts)),"%Y.%m.%d")
 plot(temps,chlts,type="l")
 
+#booléen ?
+x<-c(1,2,3,5,7,9)
+condition1<-x<4
+x[condition1]
 
+#
+plot(q90chl)
+plot(q90chl<4)
 
 
 

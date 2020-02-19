@@ -1,0 +1,38 @@
+---
+title: "Rapport D5C2 baie de Seine"
+author: "Laurent"
+date: "2/19/2020"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Contexte
+
+Blablabl
+
+## Données
+
+Ici on lit les données, issues de <http://rmarkdown.rstudio.com>...
+
+```{r data,echo=FALSE}
+library(raster)
+# spécifier env de travail
+getwd()
+setwd("/home/moi/ifremer/cours_dcsmm")
+#lecture du fichier chlorophylle a
+chl<-stack("chl")
+plot(chl)
+```
+
+## Analyses
+
+Résumé des analyses
+
+```{r analyses, echo=FALSE}
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
