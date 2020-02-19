@@ -27,7 +27,10 @@ suppressPackageStartupMessages(library(raster))
 setwd("/home/moi/ifremer/cours_dcsmm")
 #lecture du fichier chlorophylle a
 chl<-stack("chl")
-plot(chl)
+#calcul de la moyenne et affichage
+meanchl<-mean(chl,na.rm=TRUE)
+plot(meanchl)
+title("Chl moy 2010-2018")
 ```
 
 ## Analyses
@@ -35,7 +38,13 @@ plot(chl)
 Résumé des analyses
 
 ```{r analyses, echo=FALSE}
-
+#comment définir une fonction ?
+fctquantile<-function(input,na.rm=TRUE){
+  resultats<-quantile(input,probs=0.9,na.rm=TRUE)
+  return(resultats)
+}
+q90chl<-stackApply(chl[[1:2557]],rep(1,2557),fctquantile)
+plot(q90chl,main="Q90 chl 2010-2016")
 ```
 
 ## Carte du bon état écologique de D5C2
